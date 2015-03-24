@@ -1,0 +1,12 @@
+//EXERCISE 2.1
+//Write a recursive function to get the nth Fibonacci number
+//The first (n=1) Fibonacci number is 0 and the second (n=2) is 1. 
+//The nth number is always the sum of the previous two
+
+def fib(n: Int): Int = {
+	@annotation.tailrec
+	def loop(n: Int, acc: Int, prev: Int): Int = 
+		if (n <= 1) acc 
+		else loop(n-1, acc + prev, acc)
+	loop(n, 0, 1) 
+}
