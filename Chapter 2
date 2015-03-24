@@ -10,3 +10,53 @@ def fib(n: Int): Int = {
 		else loop(n-1, acc + prev, acc)
 	loop(n, 0, 1) 
 }
+
+
+
+
+//EXERCISE 2.2
+//Implement isSorted, which checks whether an Array[A] is sorted according to a given comparison function.
+//An example of a polymorphic function
+
+def isSorted[A](as: Array[A], ordered: (A,A) => Boolean): Boolean =
+{
+  def loop(n: Int): Boolean =
+    if (n>=(as.length-1)) true
+    else if (ordered(as(n), as(n+1)) == false) false
+    else loop(n+1)
+  loop(0)
+}
+
+//Defined ordered functions:
+
+def orderedfn_asc(x: Int, y: Int): Boolean = {
+  if (x <= y) true
+  else false
+}
+
+def orderedfn_des(x: Int, y: Int): Boolean = {
+  if (x >= y) true
+  else false
+}
+
+def ordered_string(x: String, y: String): Boolean = {
+  if (x <= y) true
+  else false
+}
+
+//To check if an array is ordered, run isSorted on an Array with specified ordered function, eg
+//isSorted(Array(2,3,3,5), orderedfn_asc) will return true
+//isSorted(Array(5,6,5,4), orderedfn_des) will return false
+//isSorted(Array("cats", "and", "dogs"), ordered_string) will return false
+
+//Can define an Array in the program and function to generate result: 
+
+val arr = Array(10,6,6,5,3,0)
+val str = Array("cats", "and", "dogs", "not", "ordered")
+
+def result_ascending = isSorted(arr, orderedfn_asc)
+def result_descending = isSorted(arr, orderedfn_des)
+def result_string = isSorted(str, ordered_string)
+
+
+
